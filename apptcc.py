@@ -49,10 +49,10 @@ from wordcloud import WordCloud  # Menambahkan impor WordCloud
 
 # Load dataset
 def load_data():
-    return pd.read_csv(r"D:\Tel U\Semester 6\TCC\data_hasil_TextPreProcessing.csv")
+    return pd.read_csv('data_hasil_TextPreProcessing.csv')
 
 def load_data_user():
-    return pd.read_csv(r"D:\Tel U\Semester 6\TCC\data_awal.csv")
+    return pd.read_csv('data_awal.csv')
 
 def display_wordcloud(data):
     tokenized_text = ' '.join(data['content'])
