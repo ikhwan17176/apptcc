@@ -97,20 +97,12 @@ def display_sentiment_with_most_thumbsup_piechart(data_user):
     sentiment_thumbsup = data_user.groupby('score')['thumbsUpCount'].sum().reset_index()
     fig_sentiment_thumbsup = px.pie(sentiment_thumbsup, values='thumbsUpCount', names='score',
                                     title='Sentiment with Most ThumbsUpCount')
-    fig_sentiment_thumbsup.update_layout(height=300, width=400)
+    fig_sentiment_thumbsup.update_layout(height=500, width=500)
     return fig_sentiment_thumbsup
-
-# Function to display score distribution
-def display_score_distribution(data_user):
-    score_distribution = data_user['score'].value_counts().reset_index().rename(columns={'index': 'score', 'score': 'count'})
-    fig_score_distribution = px.pie(score_distribution, values='count', names='score',
-                                    title='Score Distribution')
-    fig_score_distribution.update_layout(height=300, width=400)
-    return fig_score_distribution
 
 # Main function
 def main():
-    st.title('App Review Sentiment Analysis')
+    st.title('Analisis Sentimen Ulasan Aplikasi Shoppee')
 
     # Load data
     data = load_data()
@@ -137,9 +129,6 @@ def main():
 
         fig_sentiment_thumbsup = display_sentiment_with_most_thumbsup_piechart(data_user)
         st.plotly_chart(fig_sentiment_thumbsup)
-
-        fig_score_piechart = display_score_distribution(data_user)
-        st.plotly_chart(fig_score_piechart)
 
 if __name__ == '__main__':
     main()
