@@ -67,7 +67,7 @@ def display_sentiment_distribution(data):
     sentiment_counts = data['Label'].value_counts()
 
     fig_sentiment = px.pie(sentiment_counts, values=sentiment_counts.values, names=sentiment_counts.index,
-                           title='Sentiment Distribution')
+                           title='Sentiment Distribution', width=500, height=500)
     return fig_sentiment
 
 def display_time_distribution(data_user):
@@ -75,7 +75,7 @@ def display_time_distribution(data_user):
     time_distribution = data_user['at'].dt.hour.value_counts().sort_index()
 
     fig_time_distribution = px.line(time_distribution, x=time_distribution.index, y=time_distribution.values,
-                                    labels={'x': 'Hour', 'y': 'Count'}, title='Time Distribution')
+                                    labels={'x': 'Hour', 'y': 'Count'}, title='Time Distribution',width=500, height=500)
     return fig_time_distribution
 
 # Function to display top 5 comments with most thumbsUpCount
@@ -119,11 +119,8 @@ def main():
     top_row, bottom_row = st.columns(2)
 
     with top_row:
-        st.header('Sentiment Distribution')
         fig_sentiment = display_sentiment_distribution(data)
         st.plotly_chart(fig_sentiment)
-
-        st.header('Time Distribution')
         fig_time_distribution = display_time_distribution(data_user)
         st.plotly_chart(fig_time_distribution)
 
@@ -135,15 +132,12 @@ def main():
         top_comments = display_top_comments(data_user)
         st.dataframe(top_comments)
 
-        st.header('Bar Chart for Top 5 Comments with Most ThumbsUpCount')
         fig_top_comments = display_top_comments_bar_chart(top_comments)
         st.plotly_chart(fig_top_comments)
 
-        st.header('Sentiment with Most ThumbsUpCount')
         fig_sentiment_thumbsup = display_sentiment_with_most_thumbsup_piechart(data_user)
         st.plotly_chart(fig_sentiment_thumbsup)
 
-        st.header('Score Distribution')
         fig_score_piechart = display_score_distribution(data_user)
         st.plotly_chart(fig_score_piechart)
 
