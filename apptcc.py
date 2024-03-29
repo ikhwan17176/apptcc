@@ -1,5 +1,5 @@
 import pandas as pd
-data_clean = pd.read_csv(r"D:\Tel U\Semester 6\TCC\data_hasil_TextPreProcessing.csv")
+data_clean = pd.read_csv('data_hasil_TextPreProcessing.csv')
 
 import re
 def praproses(text):
